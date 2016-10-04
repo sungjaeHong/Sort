@@ -4,64 +4,50 @@ import java.util.Random;
 
 public class QuickSort {
 	public static void main(String[] args) {
-		int arr[] = new int[100];
+		/*int arr[] = new int[10];
 		Random randomNumber = new Random();
-		for(int i=0;i<arr.length;i++){
+		for (int i = 0; i < arr.length; i++) {
 			arr[i] = randomNumber.nextInt(arr.length);
-		}
-		int arr2[] = {3, 7, 5, 1, 6, 2, 4};
+		}*/
+		int arr[] = {9, 6, 9, 9, 4, 6, 8, 8, 2, 7};
 		System.out.println("정렬 전");
-		printArr(arr2);
-		quickSort(arr2, 0, arr2.length-1);
+		printArr(arr);
+		quickSort(arr,0,arr.length-1);
 		System.out.println("정렬 후");
-		printArr(arr2);
-		
+		printArr(arr);
 
 	}
-	public static void quickSort(int arr[], int left, int right){
-//		System.out.println("do quickSort");
-		int partition = partition(arr, left, right);
-		if(left<partition-1){
-			//System.out.println("left : " + left + " right : " + (partition-1));
-			quickSort(arr, left, partition-1);
-		}
-		if(partition<right){
-			//System.out.println("left : " + partition + " right : " + right);
-			quickSort(arr,partition,right);
-		}
-	}
 	
-	public static int partition(int arr[], int low, int high){
-		int i = low;
-		int j = high;
-		int temp = 0;
-		int pivot = arr[(low+high)/2];
-		
-		while(i<=j){
-			while(arr[i] < pivot){
-				i++;
-			}
-			System.out.println("picked i arr[" + i + "] : " + arr[i]);
-			while(arr[j] > pivot){
-				j--;
-			}
-			System.out.println("picked j arr[" + j + "] : " + arr[j]);
-			if(i<=j){
-				temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
-				System.out.println("swap " + arr[i] +", " + arr[j]);
-				i++;
-				j--;
-			}
-			printArr(arr);
-		}
-		System.out.println("return : " + i);
-		return i;
-	}
-	public static void printArr(int[] arr){
-		for(int i=0;i<arr.length;i++){
-			System.out.print(arr[i]+ " ");
+	public static void quickSort(int[] arr, int l, int r){
+        int left = l;
+        int right = r;
+        int pivot = arr[(l+r)/2];
+       
+        while (left <= right){						//왼쪽에서 비교하는 index와 오른쪽에서 비교하는 index가 역전되지않도록
+            while(arr[left] < pivot) left++;		//피벗보다 큰 값을 왼쪽부터 찾아나감
+            while(arr[right] > pivot) right--;		//피벗보다 작은값을 오른쪽부터 찾아나감
+            if(left <= right){    					//left와 right에서 찾은 값을 서로 바꿈
+                int temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+                left++;
+                right--;
+                printArr(arr);
+            }
+            
+        }											//왼쪽비교값과 오른쪽비교값이 교차하면 정지
+        if(l < right) {
+        	quickSort(arr, l, left-1);	}			//바꾼 index를 기반으로 부분배열을 인자로 하여 재정렬
+        if(r > left){
+        	quickSort(arr, left, r);				//바꾼 index를 기반으로 부분배열을 인자로 하여 재정렬
+        }
+    }
+
+
+
+	public static void printArr(int[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
 		}
 		System.out.println();
 	}
