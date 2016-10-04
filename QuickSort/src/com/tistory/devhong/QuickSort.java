@@ -35,11 +35,11 @@ public class QuickSort {
 			printArr(arr);
 		    }
             
-        }									//왼쪽비교값과 오른쪽비교값이 교차하면 정지
-        if(l < right) quickSort(arr, l, left-1);				//바꾼 index를 기반으로 부분배열을 인자로 하여 재정렬
-        if(r > left) quickSort(arr, left, r);					//바꾼 index를 기반으로 부분배열을 인자로 하여 재정렬
+		}									//왼쪽비교값과 오른쪽비교값이 교차하면 정지
+		if(l < right) quickSort(arr, l, left-1);				//바꾼 index를 기반으로 부분배열을 인자로 하여 재정렬
+		if(r > left) quickSort(arr, left, r);					//바꾼 index를 기반으로 부분배열을 인자로 하여 재정렬
         
-    }
+	}
 
 
 
